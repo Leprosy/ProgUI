@@ -86,13 +86,14 @@
         var footer = $('<div class="pui-table-footer"></div>');
 
         // Setup tools
-        // Filter
+        // Search
         tools.find("input").on("change", function(ev) {
-            console.log("searching", table, table._PUITable, this.value);
+            console.log("PUITable: Searching data.", table, table._PUITable, this.value);
             loading(table);
-
             _info.search.query = this.value;
             render(table);
+            console.log("PUITable: Search callback.", this.value, table._PUITable);
+            table._PUITable.onSearch(this.value, table._PUITable);
         }).val(_info.search.query);
 
         // Build columns
@@ -125,6 +126,8 @@
                 }
 
                 sort(table);
+                console.log("PUITable: Sort callback.", _info.sort.col, _info.sort.order, _info);
+                table._PUITable.onSort(_info.sort.col, _info.sort.order, _info);
             });
 
             headerRow.append(column);
@@ -160,12 +163,17 @@
         this.each(function(index, elem) {
             console.log("PUITable: Initializing", this);
 
+            // Default options for the table
             var dict = {};
             dict.cols = [];
             dict.data = [];
             dict.search = { query: "", function: null }
             dict.sort = {col: "_index", order: "asc", function: null};
+            dict.onSearch = function(query, table) {}
+            dict.onSort = function(col, order, table) {}
+            $.extend(dict, options);
 
+            // Build columns & data structures
             $(this).find("th").each(function(){
                 dict.cols.push(this.innerText);
             });

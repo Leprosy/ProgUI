@@ -132,7 +132,11 @@
     <script src="js/table.js"></script>
     <script>
     /* App.js */
-    $('#table1').PUITable()
+    $('#table1').PUITable({
+        onSearch: function(query) {
+            alert("You searched for: " + query);
+        }
+    });
 
     function buildTable() {
         for (var i = 0; i < 1500; ++i) {
