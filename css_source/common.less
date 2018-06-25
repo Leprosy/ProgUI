@@ -1,0 +1,24 @@
+/* Mixins, helpers, common elements */
+.clearfix {
+    clear: both;
+}
+
+.bg-debug {
+    background-color: @color-debug;
+}
+
+/* A contextual block */
+.block(@color) {
+    background-color: lighten(@color, 30%);
+    border: 1px solid @color;
+}
+
+/* Interactable contextual element */
+.interact(@color) {
+    &:hover {
+        background-color: lighten(@color, 40%);
+    }
+    &:active {
+        background-color: lighten(@color, 50%);
+    }
+}

@@ -1,0 +1,32 @@
+/* Imports */
+@import "./reset.less";
+@import "./parameters.less";
+@import "./common.less";
+@import "./components.less";
+
+/* Base CSS */
+body {
+    font-family: @font-primary;
+    font-size: @font-size-base;
+    color: @color-base;
+}
+
+/* Titles */
+h1 { font-size: @font-size-base * 1.5 }
+h2 { font-size: @font-size-base * 1.1 }
+h3 { font-size: @font-size-base * 1.05 }
+
+/* Links */
+a {
+    text-decoration: none;
+    color: @color-base - #555;
+
+    &:hover {
+        color: @color-base + #666;
+    }
+}
+
+/* Structure */
+section {
+    .clearfix;
+}

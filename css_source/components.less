@@ -1,0 +1,80 @@
+/* Navigation components */
+nav {
+    .clearfix;
+    .bg-debug;
+
+    h1,h2,h3,h4,h5,h6 {
+        float: left;
+        .bg-debug;
+        padding: @padding-base @padding-base * 4;
+    }
+
+    ul {
+        li {
+            display: block;
+            float: left;
+
+            * {
+                display: block;
+                padding: @padding-base @padding-base * 2;
+            }
+        }
+    }
+
+    ul:first-of-type {
+        display: inline-block;
+        float:left;
+    }
+
+    ul:last-of-type {
+        display: inline-block;
+        float:right;
+    }
+}
+
+/* Buttons */
+button {
+    .block(@color-base);
+    .interact(@color-base);
+
+    &.info {
+        .block(@color-info);
+        .interact(@color-info);
+    }
+
+    &.warning {
+        .block(@color-warning);
+        .interact(@color-warning);
+    }
+
+    &.danger {
+        .block(@color-danger);
+        .interact(@color-danger);
+    }
+}
+
+/* Alerts */
+.alert {
+    .block(@color-base);
+    .interact(@color-base);
+
+    &.info {
+        .block(@color-info);
+        .interact(@color-info);
+    }
+
+    &.warning {
+        .block(@color-warning);
+        .interact(@color-warning);
+    }
+
+    &.danger {
+        .block(@color-danger);
+        .interact(@color-danger);
+    }
+}
+
+/* Footer components */
+footer {
+    .clearfix;
+}

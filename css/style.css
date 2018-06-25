@@ -1,0 +1,270 @@
+/* Imports */
+body,
+html {
+  border: 0;
+  font-family: Helvetica-Neue, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+article,
+aside,
+audio,
+canvas,
+caption,
+details,
+div,
+figure,
+footer,
+header,
+hgroup,
+iframe,
+img,
+mark,
+menu,
+nav,
+object,
+section,
+span,
+summary,
+table,
+tbody,
+td,
+tfoot,
+thead,
+tr,
+video {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+a,
+abbr,
+address,
+b,
+blockquote,
+cit,
+code,
+dd,
+del,
+dfn,
+dl,
+dt,
+em,
+fieldset,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+i,
+ins,
+label,
+legend,
+li,
+ol,
+p,
+pre,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+ul {
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+}
+article,
+aside,
+audio,
+canvas,
+figcaption,
+figure,
+figure img,
+footer,
+header,
+hgroup,
+nav,
+section,
+video {
+  display: block;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+table caption,
+table td,
+table th {
+  text-align: left;
+  vertical-align: middle;
+}
+a img {
+  border: 0;
+}
+:focus {
+  outline: 0;
+}
+/* Fonts & colors */
+/* Spacing, margins, padding */
+/* Misc */
+/* Mixins, helpers, common elements */
+.clearfix {
+  clear: both;
+}
+.bg-debug {
+  background-color: #cccccc;
+}
+/* A contextual block */
+/* Interactable contextual element */
+/* Navigation components */
+nav {
+  clear: both;
+  background-color: #cccccc;
+}
+nav h1,
+nav h2,
+nav h3,
+nav h4,
+nav h5,
+nav h6 {
+  float: left;
+  background-color: #cccccc;
+  padding: 5px 20px;
+}
+nav ul li {
+  display: block;
+  float: left;
+}
+nav ul li * {
+  display: block;
+  padding: 5px 10px;
+}
+nav ul:first-of-type {
+  display: inline-block;
+  float: left;
+}
+nav ul:last-of-type {
+  display: inline-block;
+  float: right;
+}
+/* Buttons */
+button {
+  background-color: #a2a2a2;
+  border: 1px solid #555555;
+}
+button:hover {
+  background-color: #bbbbbb;
+}
+button:active {
+  background-color: #d4d4d4;
+}
+button.info {
+  background-color: #8c8cd9;
+  border: 1px solid #333399;
+}
+button.info:hover {
+  background-color: #b3b3e6;
+}
+button.info:active {
+  background-color: #d9d9f2;
+}
+button.warning {
+  background-color: #d9d98c;
+  border: 1px solid #999933;
+}
+button.warning:hover {
+  background-color: #e6e6b3;
+}
+button.warning:active {
+  background-color: #f2f2d9;
+}
+button.danger {
+  background-color: #d98c8c;
+  border: 1px solid #993333;
+}
+button.danger:hover {
+  background-color: #e6b3b3;
+}
+button.danger:active {
+  background-color: #f2d9d9;
+}
+/* Alerts */
+.alert {
+  background-color: #a2a2a2;
+  border: 1px solid #555555;
+}
+.alert:hover {
+  background-color: #bbbbbb;
+}
+.alert:active {
+  background-color: #d4d4d4;
+}
+.alert.info {
+  background-color: #8c8cd9;
+  border: 1px solid #333399;
+}
+.alert.info:hover {
+  background-color: #b3b3e6;
+}
+.alert.info:active {
+  background-color: #d9d9f2;
+}
+.alert.warning {
+  background-color: #d9d98c;
+  border: 1px solid #999933;
+}
+.alert.warning:hover {
+  background-color: #e6e6b3;
+}
+.alert.warning:active {
+  background-color: #f2f2d9;
+}
+.alert.danger {
+  background-color: #d98c8c;
+  border: 1px solid #993333;
+}
+.alert.danger:hover {
+  background-color: #e6b3b3;
+}
+.alert.danger:active {
+  background-color: #f2d9d9;
+}
+/* Footer components */
+footer {
+  clear: both;
+}
+/* Base CSS */
+body {
+  font-family: Arial, sans;
+  font-size: 16px;
+  color: #555555;
+}
+/* Titles */
+h1 {
+  font-size: 24px;
+}
+h2 {
+  font-size: 17.6px;
+}
+h3 {
+  font-size: 16.8px;
+}
+/* Links */
+a {
+  text-decoration: none;
+  color: #000000;
+}
+a:hover {
+  color: #bbbbbb;
+}
+/* Structure */
+section {
+  clear: both;
+}
