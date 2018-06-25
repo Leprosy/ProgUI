@@ -1,4 +1,11 @@
+/**
+ * ProgUI Table component JS
+ * 
+ */
 (function($) {
+    /**
+     *  Default sorting algorithm, a simple quickSort, User can plug in a custom
+     *  sort function if desired. */
     function isNumber(a) {
         return parseFloat(a) == parseFloat(a);
     }
@@ -45,6 +52,9 @@
         return quickSort(array, 0, array.length, key, order);
     }
 
+    /**
+     * Sorts the table
+     */
     function sort(table) {
         _sort = table._PUITable.sortFn || _sort;
         console.log("PUITable: Sorting data.", table, table._PUITable);
@@ -52,10 +62,16 @@
         render(table);
     }
 
+    /**
+     * Set the loading status
+     */
     function loading(table) {
         $(table).first().next().css('opacity', '0.5');
     }
 
+    /**
+     * Renders the HTML of the table
+     */
     function render(table) {
         console.log("PUITable: Building table HTML structure", table, table._PUITable);
         // Meta
@@ -135,10 +151,11 @@
         $(table).first().next().remove();
         $(table).hide().after(container);
         console.log("PUITable: Render ready", table, table._PUITable);
-    };
+    }
 
-    
-
+    /**
+     * Main constructor, builds table data structure.
+     */
     $.fn.PUITable = function(options) {
         this.each(function(index, elem) {
             console.log("PUITable: Initializing", this);
