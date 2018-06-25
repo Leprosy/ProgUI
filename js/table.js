@@ -56,9 +56,9 @@
      * Sorts the table
      */
     function sort(table) {
-        _sort = table._PUITable.sortFn || _sort;
+        var sortFn = table._PUITable.sort.function || _sort;
         console.log("PUITable: Sorting data.", table, table._PUITable);
-        _sort(table._PUITable.data, table._PUITable.sort.col, table._PUITable.sort.order);
+        sortFn(table._PUITable.data, table._PUITable.sort.col, table._PUITable.sort.order);
         render(table);
     }
 
@@ -91,9 +91,9 @@
             console.log("searching", table, table._PUITable, this.value);
             loading(table);
 
-            _info.search = this.value;
+            _info.search.query = this.value;
             render(table);
-        }).val(_info.search);
+        }).val(_info.search.query);
 
         // Build columns
         for (var i = 0; i < _info.cols.length; ++i) {
@@ -163,8 +163,8 @@
             var dict = {};
             dict.cols = [];
             dict.data = [];
-            dict.search = "";
-            dict.sort = {col: "_index", order: "asc"};
+            dict.search = { query: "", function: null }
+            dict.sort = {col: "_index", order: "asc", function: null};
 
             $(this).find("th").each(function(){
                 dict.cols.push(this.innerText);
