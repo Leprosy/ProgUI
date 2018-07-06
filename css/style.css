@@ -118,15 +118,16 @@ a img {
 .clearfix {
   clear: both;
 }
-.bg-debug {
-  background-color: #cccccc;
+.debug {
+  background-color: #ffffbc;
+  outline: 1px solid #993333;
 }
 /* A contextual block */
 /* Interactable contextual element */
-/* Navigation components */
+/* Navigation */
 nav {
   clear: both;
-  background-color: #cccccc;
+  height: 37.5px;
 }
 nav h1,
 nav h2,
@@ -135,16 +136,24 @@ nav h4,
 nav h5,
 nav h6 {
   float: left;
-  background-color: #cccccc;
-  padding: 5px 20px;
+  height: 37.5px;
+  line-height: 37.5px;
+}
+nav ul {
+  list-style: none;
 }
 nav ul li {
-  display: block;
   float: left;
+  height: 37.5px;
+  margin-right: 15px;
+  /* {
+                display: block;
+                padding: @padding-base @padding-base * 2;
+                height: 2.5 * @margin-base;
+            } */
 }
 nav ul li * {
-  display: block;
-  padding: 5px 10px;
+  line-height: 37.5px;
 }
 nav ul:first-of-type {
   display: inline-block;
@@ -236,7 +245,7 @@ button.danger:active {
 .alert.danger:active {
   background-color: #f2d9d9;
 }
-/* Footer components */
+/* Footer */
 footer {
   clear: both;
 }

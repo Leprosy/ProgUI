@@ -1,36 +1,49 @@
-/* Navigation components */
+/* Navigation */
 nav {
     .clearfix;
-    .bg-debug;
+    height: 2.5 * @margin-base;
 
     h1,h2,h3,h4,h5,h6 {
         float: left;
-        .bg-debug;
-        padding: @padding-base @padding-base * 4;
+        //padding: @padding-base @padding-base * 4;
+        height: 2.5 * @margin-base;
+        line-height: 2.5 * @margin-base;
     }
 
     ul {
+        list-style: none;
+
         li {
-            display: block;
+            //display: block;
             float: left;
+            //padding: @padding-base @padding-base * 2;
+            height: 2.5 * @margin-base;
+            margin-right: @margin-base;
 
             * {
+                line-height: 2.5 * @margin-base;
+            }
+            /* {
                 display: block;
                 padding: @padding-base @padding-base * 2;
-            }
+                height: 2.5 * @margin-base;
+            } */
         }
     }
 
     ul:first-of-type {
         display: inline-block;
-        float:left;
+        float: left;
     }
 
     ul:last-of-type {
         display: inline-block;
-        float:right;
+        float: right;
     }
 }
+
+
+
 
 /* Buttons */
 button {
@@ -53,6 +66,9 @@ button {
     }
 }
 
+
+
+
 /* Alerts */
 .alert {
     .block(@color-base);
@@ -74,7 +90,10 @@ button {
     }
 }
 
-/* Footer components */
+
+
+
+/* Footer */
 footer {
     .clearfix;
 }
