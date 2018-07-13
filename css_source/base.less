@@ -1,15 +1,23 @@
-/* Imports */
+/*
+ * ProgUI - Base CSS
+ */
+
+// Imports
 @import "./reset.less";
 @import "./parameters.less";
 @import "./common.less";
 @import "./components.less";
 
-/* Base CSS */
+// Base
 body {
     font-family: @font-primary;
     font-size: @font-size-base;
     color: @color-base;
     box-sizing: content-box;
+
+    /* .media-query(@media-lg; {
+        background-color: #ff0000;
+    }) */
 }
 a {
     text-decoration: none;
@@ -20,26 +28,16 @@ a {
     }
 }
 
-div,p{
-    padding: @padding-base * 2;
+div, section, article {
+    padding: @padding-base @padding-base * 2;
+    margin-bottom: @margin-base;
+}
+p {
     margin-bottom: @margin-base;
 }
 
 
-/* Structure */
+// Structure
 section {
     .clearfix();
 }
-
-/* Media queries 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {  }
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {  }
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {  }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  } */

@@ -1,4 +1,6 @@
-/* Mixins, helpers, common elements */
+/*
+ * ProgUI - Mixins, helpers, common elements
+ */
 .clearfix {
     clear: both;
 }
@@ -8,14 +10,14 @@
     outline: 1px solid @color-danger;
 }
 
-/* A contextual block */
+// A contextual block
 .block(@color) {
     background-color: lighten(@color, 30%);
     color: @color;
     border: 1px solid @color;
 }
 
-/* Interactable contextual element */
+// Interactable contextual element */
 .interact(@color) {
     &:hover {
         background-color: lighten(@color, 40%);
@@ -25,7 +27,7 @@
     }
 }
 
-
-/*.media(@size, @content) {
-    @content
-} */
+// A simple media query mixin
+.media-query(@size; @rules) {
+  @media screen and (min-width: @size) { @rules(); }
+}

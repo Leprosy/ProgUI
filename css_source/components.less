@@ -1,6 +1,11 @@
+/*
+ * ProgUI - Components
+ */
+
 /* Titles */
 h1,h2,h3 {
-    padding: 2 * @padding-base;
+    padding: @padding-base 0;
+    margin-bottom: @margin-base;
 }
 h1 { font-size: @font-size-base * 1.5 }
 h2 { font-size: @font-size-base * 1.2 }
@@ -14,7 +19,9 @@ nav {
     .clearfix();
 
     ul {
-
+        li {
+            padding: @padding-base @padding-base * 2;
+        }
     }
     ul:last-of-type {
         margin-top: @margin-base;
@@ -61,6 +68,7 @@ nav {
 
 /* Buttons */
 button {
+    padding: @padding-base @padding-base * 2;
     .block(@color-base);
     .interact(@color-base);
 
