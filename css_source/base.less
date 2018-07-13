@@ -9,24 +9,37 @@ body {
     font-family: @font-primary;
     font-size: @font-size-base;
     color: @color-base;
+    box-sizing: content-box;
 }
-
-/* Titles */
-h1 { font-size: @font-size-base * 1.5 }
-h2 { font-size: @font-size-base * 1.1 }
-h3 { font-size: @font-size-base * 1.05 }
-
-/* Links */
 a {
     text-decoration: none;
-    color: @color-base - #555;
+    color: @color-link;
 
     &:hover {
-        color: @color-base + #666;
+        color: @color-link + #666;
     }
 }
 
+div,p{
+    padding: @padding-base * 2;
+    margin-bottom: @margin-base;
+}
+
+
 /* Structure */
 section {
-    .clearfix;
+    .clearfix();
 }
+
+/* Media queries 
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {  }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {  }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {  }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {  } */

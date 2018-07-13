@@ -1,7 +1,26 @@
+/* Titles */
+h1,h2,h3 {
+    padding: 2 * @padding-base;
+}
+h1 { font-size: @font-size-base * 1.5 }
+h2 { font-size: @font-size-base * 1.2 }
+h3 { font-size: @font-size-base * 1.05 }
+
+
+
+
 /* Navigation */
 nav {
-    .clearfix;
-    height: 2.5 * @margin-base;
+    .clearfix();
+
+    ul {
+
+    }
+    ul:last-of-type {
+        margin-top: @margin-base;
+    }
+}
+    /*height: 2.5 * @margin-base;
 
     h1,h2,h3,h4,h5,h6 {
         float: left;
@@ -23,11 +42,6 @@ nav {
             * {
                 line-height: 2.5 * @margin-base;
             }
-            /* {
-                display: block;
-                padding: @padding-base @padding-base * 2;
-                height: 2.5 * @margin-base;
-            } */
         }
     }
 
@@ -40,7 +54,7 @@ nav {
         display: inline-block;
         float: right;
     }
-}
+} */
 
 
 
@@ -69,31 +83,54 @@ button {
 
 
 
-/* Alerts */
+/* Alerts 
 .alert {
     .block(@color-base);
     .interact(@color-base);
 
-    &.info {
+    &-info {
         .block(@color-info);
         .interact(@color-info);
     }
 
-    &.warning {
+    &-warning {
         .block(@color-warning);
         .interact(@color-warning);
     }
 
-    &.danger {
+    &-danger {
         .block(@color-danger);
         .interact(@color-danger);
     }
+} */
+
+
+
+
+/* Contextual */
+.bg {
+    &-base {
+        .block(@color-base);
+    }
+    &-info {
+        .block(@color-info);
+    }
+    &-warning {
+        .block(@color-warning);
+    }
+    &-danger {
+        .block(@color-danger);
+    }
 }
+.base { color: @color-base }
+.info { color: @color-info }
+.warning { color: @color-warning }
+.danger { color: @color-danger }
 
 
 
 
 /* Footer */
 footer {
-    .clearfix;
+    .clearfix();
 }

@@ -11,6 +11,7 @@
 /* A contextual block */
 .block(@color) {
     background-color: lighten(@color, 30%);
+    color: @color;
     border: 1px solid @color;
 }
 
@@ -23,3 +24,8 @@
         background-color: lighten(@color, 50%);
     }
 }
+
+
+/*.media(@size, @content) {
+    @content
+} */
