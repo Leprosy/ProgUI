@@ -9,7 +9,6 @@
     function isNumber(a) {
         return parseFloat(a) == parseFloat(a);
     }
-
     function partition(array, left, right, key, order) {
         var cmp = array[right - 1],
             minEnd = left,
@@ -30,14 +29,12 @@
         swap(array, minEnd, right - 1);
         return minEnd;
     }
-
     function swap(array, i, j) {
         var temp = array[i];
         array[i] = array[j];
         array[j] = temp;
         return array;
     }
-
     function quickSort(array, left, right, key, order) {
         if (left < right) {
             var p = partition(array, left, right, key, order);
@@ -46,11 +43,11 @@
         }
         return array;
     }
-
     function _sort(array, key, order) {
         console.log("PUITable: Using default sorting algorithm.");
         return quickSort(array, 0, array.length, key, order);
     }
+
 
     /**
      * Sorts the table
@@ -151,10 +148,15 @@
         container.append(header);
         container.append(body);
         container.append(footer);
-        $(table).first().next().remove();
+
+        if ($(table).first().next().hasClass("pui-table")) {
+            $(table).first().next().remove();
+        }
+
         $(table).hide().after(container);
         console.log("PUITable: Render ready", table, table._PUITable);
     }
+
 
     /**
      * Main constructor, builds table data structure.
@@ -168,7 +170,7 @@
             dict.cols = [];
             dict.data = [];
             dict.search = { query: "", function: null }
-            dict.sort = {col: "_index", order: "asc", function: null};
+            dict.sort = { col: "_index", order: "asc", function: null };
             dict.onSearch = function(query, table) {}
             dict.onSort = function(col, order, table) {}
             $.extend(dict, options);

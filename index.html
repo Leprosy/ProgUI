@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/style.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="js/jquery.js"></script>
         <title>ProgUI demo</title>
         <style>
         .asc:after{content: "^"}
@@ -49,6 +49,26 @@
                 <li><input placeholder="Search..." /></li>
             </ul>
         </nav>
+
+        <section>
+            <h1>Table example</h1>
+            <table id="table1">
+                <tr>
+                    <th>Col 1</th>
+                    <th>Col 2</th>
+                    <th>Col 3</th>
+                    <th>Col 4</th>
+                    <th>Col 5</th>
+                    <th>Col 6</th>
+                    <th>Col 7</th>
+                    <th>Col 8</th>
+                </tr>
+            </table>
+
+            <button class="info" onclick="buildTable(50)">Generate 50 rows</button>
+            <button class="warning" onclick="buildTable(500)">Generate 500 rows</button>
+            <button class="danger" onclick="buildTable(5000)">Generate 5000 rows</button>
+        </section>
 
         <section>
             <h1>H1 Title</h1>
@@ -103,95 +123,47 @@
 
         <hr />
 
-        <footer>
-            <h4>Footer</h4>
-        </footer>
-<!-- 
-        <h1>Tables</h1>
-        <table id="table1">
-            <tr>
-                <th>ID</th>
-                <th>Issue</th>
-                <th>Severity</th>
-            </tr>
-            <tr>
-                <td>123</td>
-                <td>Error in some component of the footprint</td>
-                <td>1 - Normal</td>
-            </tr>
-            <tr>
-                <td>133</td>
-                <td>Wrong user interaction</td>
-                <td>1 - Normal</td>
-            </tr>
-            <tr>
-                <td>134</td>
-                <td>Footprint won't work, error with the footprint wizard</td>
-                <td>2 - High Attention</td>
-            </tr>
-            <tr>
-                <td>135</td>
-                <td>Mayor issue with a footprint</td>
-                <td>4 - Catastrophic</td>
-            </tr>
-            <tr>
-                <td>136</td>
-                <td>Issue with a footprint</td>
-                <td>3 - Danger</td>
-            </tr>
-        </table>
-
-<hr />
-
-        <button onclick="buildTable()">Render table</button>
-        <table id="table2">
-            <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-                <th>Column 5</th>
-                <th>Column 6</th>
-                <th>Column 7</th>
-                <th>Column 8</th>
-            </tr>
-        </table>
-
-
-
-    
+        <section>
+            <h3>Section</h3>
+        </section>
         <div>
-            <button onclick="launchWarning()">Warning alert</button>
-            <button onclick="launchDanger()">Danger alert</button>
+            <h3>Div</h3>
         </div>
-    
+
         <footer>
             <h4>Footer</h4>
         </footer>
-
-
+ 
     <script src="js/alert.js"></script>
     <script src="js/table.js"></script>
     <script>
     /* App.js */
-    $('#table1').PUITable({
+    /* $('#table1').PUITable({
         onSearch: function(query) {
             alert("You searched for: " + query);
         }
-    });
+    }); */
 
-    function buildTable() {
-        for (var i = 0; i < 1500; ++i) {
+    function buildTable(n) {
+        for (var i = 0; i < n; ++i) {
             var vals = [];
 
             for (var j = 0; j < 8; ++j) {
-                vals.push(Math.random() * 100);
+                if (j % 2 == 0) {
+                    vals.push(randomStr(10));
+                } else {
+                    vals.push(Math.random() * 100);
+                }
             }
 
-            $("#table2").append("<tr><td>" + vals.join("</td><td>") + "</td></tr>");
+            $("#table1").append("<tr><td>" + vals.join("</td><td>") + "</td></tr>");
         }
 
-        $('#table2').PUITable();
+        $("#table1").PUITable();
+    }
+
+    function randomStr(chars) {
+        return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, chars);
     }
 
     function launchDanger() {
@@ -215,6 +187,6 @@
             category: 'warning'
         });
     }
-    </script> -->
+    </script>
     </body>
 </html>
