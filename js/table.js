@@ -47,7 +47,7 @@
         return array;
     }
     function _sort(array, key, order) {
-        console.log("PUITable: Using default sorting algorithm.");
+        console.log("ProgTable: Using default sorting algorithm.");
         return quickSort(array, 0, array.length, key, order);
     }
 
@@ -57,9 +57,9 @@
      */
     function sort(tableID) {
         var table = $("#" + tableID);
-        var sortFn = table[0]._PUITable.sort.function || _sort;
-        console.log("PUITable: Sorting data.", table);
-        sortFn(table[0]._PUITable.data, table[0]._PUITable.sort.col, table[0]._PUITable.sort.order);
+        var sortFn = table[0]._ProgTable.sort.function || _sort;
+        console.log("ProgTable: Sorting data.", table);
+        sortFn(table[0]._ProgTable.data, table[0]._ProgTable.sort.col, table[0]._ProgTable.sort.order);
         render(tableID);
     }
 
@@ -67,7 +67,7 @@
      * Set the loading status
      */
     function loading(tableID) {
-        var table = $("#" + tableID + " div.pui-table-body");
+        var table = $("#" + tableID + " div.body");
         table.css("opacity", "0.5");
         console.log("Loading")
     }
@@ -77,29 +77,30 @@
      */
     function render(tableID) {
         var table = $("#" + tableID);
-        console.log("PUITable: Building table HTML structure", table);
+        console.log("ProgTable: Building table HTML structure", table);
 
         // Meta
-        var _info = table[0]._PUITable;
+        var _info = table[0]._ProgTable;
 
         // Base elements for the table
-        var tools = $('<div class="pui-tools"><input type="text" placeholder="Enter search text..." class="pui-search" /></div>');
-        var header = $('<div class="pui-table-header"></div>');
-        var headerRow = $('<div class="pui-table-row"></div>');
-        var body = $('<div class="pui-table-body"></div>');
-        var footer = $('<div class="pui-table-footer"></div>');
+        var tools = $('<div class="tools"><input type="text" placeholder="Enter search text..." class="search" /></div>');
+        var header = $('<div class="header"></div>');
+        var headerRow = $('<div class="row"></div>');
+        var container = $('<div class="container"></div>');
+        var body = $('<div class="body"></div>');
+        var footer = $('<div class="footer"></div>');
 
         // Setup tools
         // Search
         tools.find("input").on("change", function(ev) {
-            console.log("PUITable: Searching data.", this.value, table);
+            console.log("ProgTable: Searching data.", this.value, table);
             loading(tableID);
             _info.search.query = this.value;
 
             setTimeout(function() {
                 render(tableID);
-                console.log("PUITable: Search callback.", this.value, table);
-                _info.onSearch(this.value, _info);
+                console.log("ProgTable: Search callback.", _info.search.query, table);
+                _info.onSearch(_info.search.query, _info);
             }, 1)
         }).val(_info.search.query);
 
@@ -134,7 +135,7 @@
 
                 setTimeout(function() {
                     sort(tableID);
-                    console.log("PUITable: Sort callback.", _info.sort.col, _info.sort.order, _info);
+                    console.log("ProgTable: Sort callback.", _info.sort.col, _info.sort.order, _info);
                     _info.onSort(_info.sort.col, _info.sort.order, _info);
                 }, 1)
             });
@@ -147,7 +148,7 @@
         // Build body - apply search filters
         for (var i = 0; i < _info.data.length; ++i) {
             var included = false;
-            var row = $('<div class="pui-table-row"></div>');
+            var row = $('<div class="row"></div>');
 
             for (var j = 0; j < _info.cols.length; ++j) {
                 var key = _info.cols[j];
@@ -168,27 +169,35 @@
             if (included) $(body).append(row);
         }
 
+        // Apply layout settings
+        if (isNumber(_info.layout.height)) {
+            container.css("height", _info.layout.height);
+        }
+
+        // Attach to DOM
         table.html("");
         table.append(tools);
         table.append(header);
-        table.append(body);
+        table.append(container);
         table.append(footer);
-        console.log("PUITable: Render ready", table);
+        container.append(body);
+        console.log("ProgTable: Render ready", table);
     }
 
 
     /**
      * Main constructor, builds table data structure.
      */
-    $.fn.PUITable = function(options) {
+    $.fn.ProgTable = function(options) {
         this.each(function(index, elem) {
-            console.log("PUITable: Initializing", this);
+            console.log("ProgTable: Initializing", this);
 
             // Default options for the table
             var id = this.id;
             var dict = {};
             dict.cols = [];
             dict.data = [];
+            dict.layout = { height: undefined }
             dict.search = { query: "", function: null }
             dict.sort = { col: "_index", order: "asc", function: null };
             dict.onSearch = function(query, table) {}
@@ -214,9 +223,9 @@
                 }
             });
 
-            console.log("PUITable: Created table data structure.", dict);
-            var container = $('<div class="pui-table" id="' + id + '"></div>');
-            container[0]._PUITable = dict;
+            console.log("ProgTable: Created table data structure.", dict);
+            var container = $('<div class="prog-table" id="' + id + '"></div>');
+            container[0]._ProgTable = dict;
             $(this).replaceWith(container);
 
             render(id);
