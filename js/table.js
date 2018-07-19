@@ -1,6 +1,9 @@
 /**
  * ProgUI Table component JS
  * 
+ * @TODO:
+ *  - Remove col_id from cols data structure.
+ *  - Update only the table body on the render method.
  */
 (function($) {
     /**
@@ -52,30 +55,34 @@
     /**
      * Sorts the table
      */
-    function sort(table) {
-        var sortFn = table._PUITable.sort.function || _sort;
-        console.log("PUITable: Sorting data.", table, table._PUITable);
-        sortFn(table._PUITable.data, table._PUITable.sort.col, table._PUITable.sort.order);
-        render(table);
+    function sort(tableID) {
+        var table = $("#" + tableID);
+        var sortFn = table[0]._PUITable.sort.function || _sort;
+        console.log("PUITable: Sorting data.", table);
+        sortFn(table[0]._PUITable.data, table[0]._PUITable.sort.col, table[0]._PUITable.sort.order);
+        render(tableID);
     }
 
     /**
      * Set the loading status
      */
-    function loading(table) {
-        $(table).first().next().css('opacity', '0.5');
+    function loading(tableID) {
+        var table = $("#" + tableID + " div.pui-table-body");
+        table.css("opacity", "0.5");
+        console.log("Loading")
     }
 
     /**
      * Renders the HTML of the table
      */
-    function render(table) {
-        console.log("PUITable: Building table HTML structure", table, table._PUITable);
+    function render(tableID) {
+        var table = $("#" + tableID);
+        console.log("PUITable: Building table HTML structure", table);
+
         // Meta
-        var _info = table._PUITable;
+        var _info = table[0]._PUITable;
 
         // Base elements for the table
-        var container = $('<div class="pui-table"><h2>Table</h2></div>');
         var tools = $('<div class="pui-tools"><input type="text" placeholder="Enter search text..." class="pui-search" /></div>');
         var header = $('<div class="pui-table-header"></div>');
         var headerRow = $('<div class="pui-table-row"></div>');
@@ -85,12 +92,15 @@
         // Setup tools
         // Search
         tools.find("input").on("change", function(ev) {
-            console.log("PUITable: Searching data.", table, table._PUITable, this.value);
-            loading(table);
+            console.log("PUITable: Searching data.", this.value, table);
+            loading(tableID);
             _info.search.query = this.value;
-            render(table);
-            console.log("PUITable: Search callback.", this.value, table._PUITable);
-            table._PUITable.onSearch(this.value, table._PUITable);
+
+            setTimeout(function() {
+                render(tableID);
+                console.log("PUITable: Search callback.", this.value, table);
+                _info.onSearch(this.value, _info);
+            }, 1)
         }).val(_info.search.query);
 
         // Build columns
@@ -104,7 +114,7 @@
 
             // Sort events
             column.click(function() {
-                loading(table);
+                loading(tableID);
 
                 var $this = $(this);
                 _info.sort.col = this.innerText;
@@ -122,9 +132,11 @@
                     _info.sort.order = "asc";
                 }
 
-                sort(table);
-                console.log("PUITable: Sort callback.", _info.sort.col, _info.sort.order, _info);
-                table._PUITable.onSort(_info.sort.col, _info.sort.order, _info);
+                setTimeout(function() {
+                    sort(tableID);
+                    console.log("PUITable: Sort callback.", _info.sort.col, _info.sort.order, _info);
+                    _info.onSort(_info.sort.col, _info.sort.order, _info);
+                }, 1)
             });
 
             headerRow.append(column);
@@ -132,29 +144,36 @@
 
         header.append(headerRow);
 
-        // Build body
-        for (var i = 0; i < table._PUITable.data.length; ++i) {
+        // Build body - apply search filters
+        for (var i = 0; i < _info.data.length; ++i) {
+            var included = false;
             var row = $('<div class="pui-table-row"></div>');
 
-            for (var j = 0; j < table._PUITable.cols.length; ++j) {
-                var key = table._PUITable.cols[j];
-                row.append("<span>" + table._PUITable.data[i][key] + "</span>");
+            for (var j = 0; j < _info.cols.length; ++j) {
+                var key = _info.cols[j];
+                var cellData = _info.data[i][key];
+                var search = _info.search.query;
+
+                // Global search filter
+                if (search.length < 1) {
+                    included = true;
+                } else if (cellData.indexOf(search) >= 0) {
+                    included = true;
+                    cellData = cellData.replace(_info.search.query, '<span class="highlight">' + _info.search.query + "</span>");
+                }
+
+                row.append("<span>" + cellData + "</span>");
             }
 
-            $(body).append(row);
+            if (included) $(body).append(row);
         }
 
-        container.append(tools);
-        container.append(header);
-        container.append(body);
-        container.append(footer);
-
-        if ($(table).first().next().hasClass("pui-table")) {
-            $(table).first().next().remove();
-        }
-
-        $(table).hide().after(container);
-        console.log("PUITable: Render ready", table, table._PUITable);
+        table.html("");
+        table.append(tools);
+        table.append(header);
+        table.append(body);
+        table.append(footer);
+        console.log("PUITable: Render ready", table);
     }
 
 
@@ -166,6 +185,7 @@
             console.log("PUITable: Initializing", this);
 
             // Default options for the table
+            var id = this.id;
             var dict = {};
             dict.cols = [];
             dict.data = [];
@@ -195,8 +215,11 @@
             });
 
             console.log("PUITable: Created table data structure.", dict);
-            this._PUITable = dict;
-            render(this);
+            var container = $('<div class="pui-table" id="' + id + '"></div>');
+            container[0]._PUITable = dict;
+            $(this).replaceWith(container);
+
+            render(id);
         });
     };
 }(jQuery));
