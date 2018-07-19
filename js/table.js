@@ -145,7 +145,7 @@
 
         header.append(headerRow);
 
-        // Build body - apply search filters
+        // Build body - apply search filters & templates
         for (var i = 0; i < _info.data.length; ++i) {
             var included = false;
             var row = $('<div class="row"></div>');
@@ -161,6 +161,11 @@
                 } else if (cellData.indexOf(search) >= 0) {
                     included = true;
                     cellData = cellData.replace(_info.search.query, '<span class="highlight">' + _info.search.query + "</span>");
+                }
+
+                // Column template
+                if (typeof _info.colTemplate[key] == "function") {
+                    cellData = _info.colTemplate[key](i, cellData);
                 }
 
                 row.append("<span>" + cellData + "</span>");

@@ -44,7 +44,7 @@
         .prog-table .row {
             display: table-row;
         }
-        .prog-table .row span {
+        .prog-table .row > span {
             padding: 4px;
             width: 120px;
             border-bottom: 1px solid #000;
@@ -197,8 +197,22 @@
                 height: 400
             },
             colTemplate: {
-                "Col 2": function(row, content) {
+                "Col 1": function(row, content) {
                     return row + ") = " + content;
+                },
+                "Col 2": function(row, content) {
+                    if (content > 50) {
+                        return '<span class="warning">' + content + "</span>";
+                    } else {
+                        return content;
+                    }
+                },
+                "Col 4": function(row, content) {
+                    if (row % 2 == 0) {
+                        return "<strong>" + content + "</strong>";
+                    } else {
+                        return content;
+                    }
                 }
             },
             onSearch: function(query, info) {
