@@ -4,6 +4,7 @@
  * @TODO:
  *  - Remove col_id from cols data structure.
  *  - Update only the table body on the render method.
+ *  - Pagination
  */
 (function($) {
     /**

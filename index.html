@@ -9,15 +9,15 @@
         .asc:after{content: "^"}
         .desc:after{content: "v"}
 
-        /* alerts */
-        .alert{
+        /* prog-alert */
+        .prog-alert{
             border:1px solid #666;padding:15px;
             position:fixed;right:10px;cursor:pointer;
             height:60px;overflow:hidden;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4)
         }
 
-        /* prog-table  default theme */
+        /* prog-table */
         .prog-table div {
             margin: 0;
             padding: 0;
@@ -147,7 +147,7 @@
             <div>
                 <h3>Buttons</h3>
                 <p>Some buttons. Can use <strong>contextual</strong> classes.</p>
-                <button>Simple button</button>
+                <button onclick="launchWarning()">Simple button that launches an alert</button>
                 <button class="info">Simple button</button>
                 <button class="warning">Simple button</button>
                 <button class="danger">Simple button</button>
@@ -171,12 +171,6 @@
     <script src="js/table.js"></script>
     <script>
     /* App.js */
-    /* $('#table1').ProgTable({
-        onSearch: function(query) {
-            alert("You searched for: " + query);
-        }
-    }); */
-
     function buildTable(n) {
         for (var i = 0; i < n; ++i) {
             var vals = [];
@@ -194,7 +188,7 @@
 
         $("#table1").ProgTable({
             layout: {
-                height: 400
+                //height: 400
             },
             colTemplate: {
                 "Col 1": function(row, content) {
@@ -228,25 +222,13 @@
         return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, chars);
     }
 
-    function launchDanger() {
-        $('body').alertMsg({
-            title: 'Danger Test',
-            msg: 'Heavy problem detected. <strong>Click to see details...</strong>',
-            onClick: function(ev) {
-                console.log(this, ev)
-                $(".console").animate({height: 300}, 300, function() {
-                    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
-                });
-            },
-            category: 'danger'
-        });
-    }
-
     function launchWarning() {
-        $('body').alertMsg({
+        $('body').ProgAlert({
             title: 'Warning Test',
-            msg: 'This is a test for the emergency broadcast system...showing this alert.',
-            category: 'warning'
+            content: 'This is a test for the emergency broadcast system...showing this alert.',
+            className: 'bg-warning',
+            onClick: function(ev) { alert("Message clicked") },
+            onClose: function(ev) { alert("Message closed") }
         });
     }
     </script>
