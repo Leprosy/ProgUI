@@ -69,11 +69,21 @@ nav {
 
 /* Buttons */
 button {
+    cursor: pointer;
     font-family: @font-primary;
     font-size: @font-size-base;
     padding: @padding-base @padding-base * 2;
+    box-shadow: 0 2px 2px #666;
+    transition: 0.2s;
+
     .block(@color-base);
     .interact(@color-base);
+
+    &:hover {
+        box-shadow: none;
+        position: relative;
+        transform: translate(0, 2px);
+    }
 
     &.info {
         .block(@color-info);
