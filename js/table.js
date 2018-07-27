@@ -4,7 +4,7 @@
  * @TODO:
  *  - Remove col_id from cols data structure.
  *  - Update only the table body on the render method.
- *  - Pagination
+ *  - Pagination: total calculation at creation?
  */
 (function($) {
     /**
@@ -84,7 +84,14 @@
         var _info = table[0]._ProgTable;
 
         // Base elements for the table
-        var tools = $('<div class="tools"><input type="text" placeholder="Enter search text..." class="search" /></div>');
+        var toolHtml = '<div class="tools"><input type="text" placeholder="Enter search text..." class="search" />';
+        if (_info.pagination.size > 0) {
+            toolHtml += '<a href="#" class="prev">&lt;-Prev</a> | Page ' + (_info.pagination.page + 1) +
+                        ' of ' + _info.pagination.totalPages + ' | <a href="#" class="next">Next-></a>';
+        }
+        toolHtml += '</div>';
+
+        var tools = $(toolHtml);
         var header = $('<div class="header"></div>');
         var headerRow = $('<div class="row"></div>');
         var container = $('<div class="container"></div>');
@@ -104,6 +111,40 @@
                 _info.onSearch(_info.search.query, _info);
             }, 1)
         }).val(_info.search.query);
+
+        // Previous page
+        tools.find("a.prev").on("click", function(ev) {
+            if (_info.pagination.page == 0) {
+                return;
+            }
+
+            console.log("ProgTable: Previous page", table);
+            loading(tableID);
+            _info.pagination.page--;
+
+            setTimeout(function() {
+                render(tableID);
+                console.log("ProgTable: Page callback.", _info.pagination.page, table);
+                // TODO: Implement this
+            }, 1)
+        });
+
+        // Next page
+        tools.find("a.next").on("click", function(ev) {
+            if (_info.pagination.page == _info.pagination.totalPages - 1) {
+                return;
+            }
+
+            console.log("ProgTable: Next page", table);
+            loading(tableID);
+            _info.pagination.page++;
+
+            setTimeout(function() {
+                render(tableID);
+                console.log("ProgTable: Page callback.", _info.pagination.page, table);
+                // TODO: Implement this
+            }, 1)
+        });
 
         // Build columns
         for (var i = 0; i < _info.cols.length; ++i) {
@@ -146,8 +187,16 @@
 
         header.append(headerRow);
 
-        // Build body - apply search filters & templates
-        for (var i = 0; i < _info.data.length; ++i) {
+        // Build body - apply search filters & templates, check pagination
+        var ini = 0, end = _info.data.length;
+
+        if (_info.pagination.size > 0) {
+            ini = _info.pagination.size * _info.pagination.page;
+            end = _info.pagination.size * (_info.pagination.page + 1);
+            if (end > _info.data.length) end = _info.data.length;
+        }
+
+        for (var i = ini; i < end; ++i) {
             var included = false;
             var row = $('<div class="row"></div>');
 
@@ -203,12 +252,13 @@
             var dict = {};
             dict.cols = [];
             dict.data = [];
-            dict.layout = { height: undefined }
-            dict.search = { query: "", function: null }
+            dict.layout = { height: undefined };
+            dict.search = { query: "", function: null };
+            dict.pagination = { page: 0, size: 0 };
             dict.sort = { col: "_index", order: "asc", function: null };
             dict.onSearch = function(query, table) {}
             dict.onSort = function(col, order, table) {}
-            $.extend(dict, options);
+            $.extend(true, dict, options);
 
             // Build columns & data structures
             $(this).find("th").each(function(){
@@ -229,6 +279,7 @@
                 }
             });
 
+            dict.pagination.totalPages = Math.ceil(dict.data.length / dict.pagination.size);
             console.log("ProgTable: Created table data structure.", dict);
             var container = $('<div class="prog-table" id="' + id + '"></div>');
             container[0]._ProgTable = dict;
