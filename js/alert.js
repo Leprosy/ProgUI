@@ -52,13 +52,19 @@
                     $(this).animate({ bottom: "-="  + height });
                 })
                 $(this).remove();
-                //opt.onClose(ev, this);
+                opt.onClose(ev, this);
             });
         });
 
         alert.append(close);
         $(this).append(alert);
         alert.fadeIn();
+    }
+
+    $.fn.ProgAlertClose = function() {
+        $(this).find(".prog-alert").fadeOut(function() {
+            $(this).remove();
+        });
     }
 
     $.fn.alertMsgCount = function() {
