@@ -73,6 +73,7 @@ button {
     font-family: @font-primary;
     font-size: @font-size-base;
     padding: @padding-base @padding-base * 2;
+    margin-bottom: @padding-base;
     box-shadow: 0 2px 2px #666;
     transition: 0.2s;
 
@@ -147,6 +148,44 @@ button {
 .info { color: @color-info }
 .warning { color: @color-warning }
 .danger { color: @color-danger }
+
+
+
+
+/* Columns */
+.col-margin() {
+    margin-right: @padding-base / 2;
+    margin-left: @padding-base / 2;
+    &:first-child{ margin-left: 0 }
+    &:last-child{ margin-right: 0 }
+}
+.col-row {
+    padding-left: 0;
+    padding-right: 0;
+
+    .media-query(@media-lg; {
+        display: flex;
+    })
+}
+.col-row .col {
+    .media-query(@media-lg; {
+        flex: 1;
+        .col-margin();
+
+        &-2 {
+            flex: 2;
+            .col-margin();
+        }
+        &-3 {
+            flex: 3;
+            .col-margin();
+        }
+        &-4 {
+            flex: 4;
+            .col-margin();
+        }
+    });
+}
 
 
 

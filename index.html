@@ -100,6 +100,43 @@
         </nav>
 
         <section>
+            <h2>Columns</h2>
+            <div class="col-row">
+                <div class="col bg-base">
+                    <h3>Content</h3>
+                    <p>This is the content of the column. Columns are automatically dimensioned.</p>
+                </div>
+                <div class="col bg-info">
+                    <h3>Content</h3>
+                    <p>This is the content of the column. Columns are automatically dimensioned.</p>
+                </div>
+                <div class="col-2 bg-warning">
+                    <h3>Double sized content</h3>
+                    <p>This is the content of the column. Columns are automatically dimensioned.</p>
+                </div>
+                <div class="col bg-info">
+                    <h3>Content</h3>
+                    <p>This is the content of the column. Columns are automatically dimensioned.</p>
+                </div>
+            </div>
+
+            <div class="col-row">
+                <div class="col bg-info">
+                    <h3>Content</h3>
+                    <p>This is the content of the column. Columns are automatically dimensioned.</p>
+                </div>
+                <div class="col-2 bg-warning">
+                    <h3>Content x 2</h3>
+                    <p>This is the content of the column. Columns are automatically dimensioned.</p>
+                </div>
+                <div class="col-3 bg-danger">
+                    <h3>Content x 3</h3>
+                    <p>This is the content of the column. Columns are automatically dimensioned.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
             <h1>Table example</h1>
             <table id="table1">
                 <tr>
@@ -164,7 +201,7 @@
                 <h3>Buttons</h3>
                 <p>Some buttons. Can use <strong>contextual</strong> classes.</p>
                 <button onclick="launchWarning()">Simple button that launches an alert</button>
-                <button class="info">Simple button</button>
+                <button onclick="$.ProgAlert.closeAll(function(){alert('all closed')})" class="info">Simple button that closes all alerts</button>
                 <button class="warning">Simple button</button>
                 <button class="danger">Simple button</button>
             </div>
@@ -229,10 +266,14 @@
                 }
             },
             onSearch: function(query, info) {
-                $('body').ProgAlert({title: "Table Event", content: "search for:" + query});
+                $.ProgAlert.closeAll(function() {
+                    $.ProgAlert.show({title: "Table Event", content: "search for:" + query});
+                })
             },
             onSort: function(val, order, info) {
-                $('body').ProgAlert({title: "Table Event", content: "sorting:" + val + "," + order});
+                $.ProgAlert.closeAll(function() {
+                    $.ProgAlert.show({title: "Table Event", content: "sorting:" + val + "," + order});
+                })
             }
         });
     }
@@ -242,7 +283,7 @@
     }
 
     function launchWarning() {
-        $('body').ProgAlert({
+        $.ProgAlert.show({
             title: 'Warning Test',
             content: 'This is a test for the emergency broadcast system...showing this alert.',
             className: 'bg-warning',

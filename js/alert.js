@@ -2,7 +2,8 @@
  * ProgUI Alert component JS
  * 
  * @TODO:
- *
+ * - Common closing method for closeall - closeone - remove button.
+ * - Timed alerts
  */
 (function($) {
     var alerts = 0;
@@ -11,17 +12,20 @@
         className: "bg-base",
         title: "Alert message",
         content: "",
+        duration: 0,
         onClick: function(ev) {},
         onClose: function(ev) {}
     };
 
-    $.fn.ProgAlert = function(options) {
+    $.ProgAlert = {};
+
+    $.ProgAlert.show = function(options) {
         alerts++;
         var opt = {};
         $.extend(opt, defaults, options);
 
         // Alert body
-        var alert = $('<div class="prog-alert"></div>');
+        var alert = $('<div class="prog-alert" id="' + (alerts - 1) + '"></div>');
         alert.css({ display: 'none' });
         alert.append($('<strong>' + opt.title + '</strong><p>' + opt.content + '</p>'));
         alert.addClass(opt.className);
@@ -31,43 +35,62 @@
         });
 
         // Position
-        if (alerts > 1) {
-            var height = $('.prog-alert').last().outerHeight() + margin;
-            alert.css('bottom', height * (alerts - 1) + margin);
-        } else {
-            alert.css('bottom', margin);
-        }
+        var height = $('.prog-alert').last().outerHeight() + margin || 0;
+        alert.css("bottom", margin + ((alerts - 1) * height));
 
         // Alert close icon - attach handlers
         var close = $('<span class="alert-close">x</span>');
         close.css({position: 'absolute', top: '10px', right: '10px'});
-        close.on("click", function(ev) {
-            console.log("ProgAlert: Closing this alert.", ev);
-            ev.stopPropagation()
-            alerts--;
+        close.on("click", function(ev) { $.ProgAlert.close(alerts - 1); });
 
-            $(this.parentElement).fadeOut(function() {
+            /*$(this.parentElement).fadeOut(function() {
                 var height = $(this).outerHeight() + margin;
                 $(this).nextAll(".prog-alert").each(function(a,b,c) {
                     $(this).animate({ bottom: "-="  + height });
                 })
                 $(this).remove();
+                console.log("ProgAlert: Alert closed. Running callback.")
                 opt.onClose(ev, this);
             });
-        });
+        });*/
 
         alert.append(close);
-        $(this).append(alert);
+        $("body").append(alert);
         alert.fadeIn();
+    };
+
+    $.ProgAlert.close = function(id) {
+        console.log("ProgAlert: Closing alert", id);
+
+        $(".prog-alert#" + id).fadeOut(function() {
+            var height = $(this).outerHeight() + margin;
+            $(this).nextAll(".prog-alert").each(function(a,b,c) {
+                $(this).animate({ bottom: "-="  + height });
+            });
+
+            this.remove();
+            alert--;
+        })
     }
 
-    $.fn.ProgAlertClose = function() {
-        $(this).find(".prog-alert").fadeOut(function() {
+    $.ProgAlert.closeAll = function(callback) {
+        console.log("ProgAlert: Will close all alerts")
+        var collection = $("body .prog-alert");
+
+        if (collection.length == 0) {
+            console.log("ProgAlert: Alerts closed. Running callback.")
+            callback();
+            return;
+        }
+
+        collection.fadeOut(function() {
             $(this).remove();
-        });
-    }
+            alerts--;
 
-    $.fn.alertMsgCount = function() {
-        alert("alerts:" + alerts);
-    }
+            if (alerts == 0) {
+                console.log("ProgAlert: Alerts closed. Running callback.")
+                callback();
+            }
+        });
+    };
 }(jQuery));
