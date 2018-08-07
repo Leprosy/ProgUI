@@ -154,14 +154,14 @@ button {
 
 /* Columns */
 .col-margin() {
-    margin-right: @padding-base / 2;
-    margin-left: @padding-base / 2;
+    margin-right: @margin-base / 2;
+    margin-left: @margin-base / 2;
     &:first-child{ margin-left: 0 }
     &:last-child{ margin-right: 0 }
 }
 .col-row {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
+    margin-bottom: 0;
 
     .media-query(@media-lg; {
         display: flex;

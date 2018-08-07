@@ -305,8 +305,8 @@ button.danger:active {
 }
 /* Columns */
 .col-row {
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
+  margin-bottom: 0;
 }
 @media screen and (min-width: 992px) {
   .col-row {
@@ -316,8 +316,8 @@ button.danger:active {
 @media screen and (min-width: 992px) {
   .col-row .col {
     flex: 1;
-    margin-right: 2.5px;
-    margin-left: 2.5px;
+    margin-right: 7.5px;
+    margin-left: 7.5px;
   }
   .col-row .col:first-child {
     margin-left: 0;
@@ -327,8 +327,8 @@ button.danger:active {
   }
   .col-row .col-2 {
     flex: 2;
-    margin-right: 2.5px;
-    margin-left: 2.5px;
+    margin-right: 7.5px;
+    margin-left: 7.5px;
   }
   .col-row .col-2:first-child {
     margin-left: 0;
@@ -338,8 +338,8 @@ button.danger:active {
   }
   .col-row .col-3 {
     flex: 3;
-    margin-right: 2.5px;
-    margin-left: 2.5px;
+    margin-right: 7.5px;
+    margin-left: 7.5px;
   }
   .col-row .col-3:first-child {
     margin-left: 0;
@@ -349,8 +349,8 @@ button.danger:active {
   }
   .col-row .col-4 {
     flex: 4;
-    margin-right: 2.5px;
-    margin-left: 2.5px;
+    margin-right: 7.5px;
+    margin-left: 7.5px;
   }
   .col-row .col-4:first-child {
     margin-left: 0;
