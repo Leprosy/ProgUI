@@ -148,7 +148,6 @@ h3 {
 /* Navigation */
 nav {
   clear: both;
-  /* lg resolutions */
 }
 nav ul {
   list-style: none;
@@ -173,7 +172,7 @@ nav ul:last-of-type {
     height: 35px;
     line-height: 35px;
     padding: 0;
-    margin: 0 10px 0 0;
+    margin: 0 20px 0 0;
   }
   nav ul {
     height: 35px;
@@ -181,7 +180,7 @@ nav ul:last-of-type {
   nav ul li {
     float: left;
     line-height: 25px;
-    margin-right: 10px;
+    margin-right: 20px;
   }
   nav ul:first-of-type {
     display: inline-block;
@@ -358,6 +357,28 @@ button.danger:active {
   .col-row .col-4:last-child {
     margin-right: 0;
   }
+}
+/* Tabs */
+.tabs {
+  margin: 0;
+  padding: 0;
+}
+.tabs ul {
+  list-style: none;
+}
+.tabs ul li {
+  cursor: pointer;
+  border: 1px solid #555555;
+  border-bottom: none;
+  float: left;
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+.tabs ul li.active {
+  background-color: #a2a2a2;
+}
+.tabs div {
+  clear: both;
 }
 /* Footer */
 footer {

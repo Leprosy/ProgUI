@@ -29,7 +29,6 @@ nav {
         margin-top: @margin-base;
     }
 
-    /* lg resolutions */
     .media-query(@media-lg; {
         height: 3.5 * @margin-base;
 
@@ -38,7 +37,7 @@ nav {
             height: 3.5 * @margin-base;
             line-height: 3.5 * @margin-base;
             padding: 0;
-            margin: 0 @margin-base 0 0;
+            margin: 0 @margin-base * 2 0 0;
         }
 
         ul {
@@ -46,9 +45,8 @@ nav {
 
             li {
                 float: left;
-                
                 line-height: @margin-base * 2.5;
-                margin-right: @margin-base;
+                margin-right: @margin-base * 2;
             }
         }
         ul:first-of-type {
@@ -189,6 +187,33 @@ button {
 
 
 
+
+/* Tabs */
+.tabs {
+    margin: 0;
+    padding: 0;
+
+    ul {
+        list-style: none;
+
+        li {
+            cursor: pointer;
+            border: 1px solid @color-base;
+            border-bottom: none;
+            float: left;
+            padding: @padding-base @padding-base * 2;
+            margin-right: @margin-base;
+
+            &.active {
+                background-color: lighten(@color-base, 30%);
+            }
+        }
+    }
+
+    div {
+        .clearfix;
+    }
+}
 
 /* Footer */
 footer {

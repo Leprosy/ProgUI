@@ -84,6 +84,50 @@
         </nav>
 
         <section>
+            <h2>Tabs</h2>
+            <div class="tabs">
+                <ul>
+                    <li>Tab 1</li>
+                    <li>Tab 2</li>
+                    <li>Tab 3</li>
+                </ul>
+                <div class="bg-base">
+                    <h3>Content of tab 1</h3>
+                    <p>This is the content of the tab. Tab has content.</p>
+                </div>
+                <div class="bg-warning">
+                    <h3>Content of tab 2</h3>
+                    <p>Tab has content.</p>
+                </div>
+                <div class="bg-info">
+                    <h3>Content of tab 3</h3>
+                    <p>This is the content of the tab.</p>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <ul>
+                    <li>Tab 1</li>
+                    <li>Tab 2</li>
+                    <li>Tab 3</li>
+                </ul>
+                <div class="bg-base">
+                    <h3>Content of tab 1</h3>
+                    <p>This is the content of the tab. Tab has content.</p>
+                </div>
+                <div class="bg-warning">
+                    <h3>Content of tab 2</h3>
+                    <p>Tab has content.</p>
+                </div>
+                <div class="bg-info">
+                    <h3>Content of tab 3</h3>
+                    <p>This is the content of the tab.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
             <h2>Columns</h2>
             <div class="col-row">
                 <div class="col bg-base">
@@ -134,10 +178,6 @@
                     </div>
                     <div class="col-row">
                         <div class="col bg-base">
-                            <strong>Title</strong>
-                            <p>Some content here. This is a nested layout</p>
-                        </div>
-                        <div class="col bg-info">
                             <strong>Title</strong>
                             <p>Some content here. This is a nested layout</p>
                         </div>
@@ -236,6 +276,7 @@
  
     <script src="js/alert.js"></script>
     <script src="js/table.js"></script>
+    <script src="js/tabs.js"></script>
     <script>
     /* App.js */
     function buildTable(n) {
@@ -305,6 +346,9 @@
             onClose: function(ev) { alert("Message closed") }
         });
     }
+
+    // Start elements
+    $('.tabs').ProgTabs({activeTab: 1});
     </script>
     </body>
 </html>
