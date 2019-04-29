@@ -233,7 +233,8 @@ div,
 article,
 section,
 header,
-footer {
+footer,
+pre {
   padding: 10px;
   margin: 0 0 10px 0;
 }
@@ -241,7 +242,8 @@ div:last-child,
 article:last-child,
 section:last-child,
 header:last-child,
-footer:last-child {
+footer:last-child,
+pre:last-child {
   margin-bottom: 0;
 }
 .debug {
@@ -298,6 +300,23 @@ a {
 }
 a:hover {
   color: #4d4d4d;
+}
+strong {
+  font-weight: bold;
+}
+em {
+  font-style: italic;
+}
+code {
+  font-family: "Roboto Mono", mono;
+  color: #555555;
+  background-color: #d4d4d4;
+}
+pre {
+  font-family: "Roboto Mono", mono;
+  padding: 10px;
+  color: #d4d4d4;
+  background-color: #555555;
 }
 /**
  * Columns
@@ -361,14 +380,16 @@ a:hover {
 .col-row article:last-child,
 .col-row section:last-child,
 .col-row header:last-child,
-.col-row footer:last-child {
+.col-row footer:last-child,
+.col-row pre:last-child {
   margin-bottom: 10px;
 }
 .col-row:last-child div,
 .col-row article,
 .col-row section,
 .col-row header,
-.col-row footer {
+.col-row footer,
+.col-row pre {
   margin-bottom: 0;
 }
 /**
