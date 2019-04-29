@@ -1,0 +1,147 @@
+/*
+ * ProgUI - Base CSS
+ */
+
+@import "./reset.less";
+@import "./parameters.less";
+
+body {
+    font-family: @font-sans;
+    font-size: @font-size-base;
+    color: @color-default;
+    line-height: 1.5;
+}
+
+input {
+    font-family: @font-sans;
+    font-size: @font-size-base;
+}
+
+// Media-queries
+.media-query(@size; @rules) {
+    @media screen and (min-width: @size) { @rules(); }
+}
+
+// Layout
+.clearfix {
+    clear: both;
+}
+.container {
+    .media-query(@media-lg; {
+        margin: auto;
+        width: 70%;
+    })
+}
+header,footer,nav,section,div {
+    padding: @spacing-base;
+    margin: 0 0 @spacing-base 0;
+}
+
+// Debug
+.debug{
+    background-color: @color-debug;
+}
+/* header,footer,nav,section,div {
+    background-color: #ccc;
+}
+h1,h2,h3,h4,h5,h6,p{
+    background-color: #ff9;
+} */
+
+/**
+ * Typography
+ */
+h1,h2,h3,h4,h5,h6{
+    font-family: @font-serif;
+    font-weight: bold;
+}
+h1 { font-size: @font-size-base * 2.5 }
+h2 { font-size: @font-size-base * 2 }
+h3 { font-size: @font-size-base * 1.5 }
+
+h1,h2,h3,h4,h5,h6,p{
+    margin-bottom: @spacing-base;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+a {
+    text-decoration: none;
+    color: @color-link;
+
+    &:hover {
+        color: lighten(@color-link, 30%);
+    }
+}
+
+
+
+
+/**
+ * Columns
+ */
+.col-margin() {
+    margin-right: @spacing-base / 2;
+    margin-left: @spacing-base / 2;
+    &:first-child{ margin-left: 0 }
+    &:last-child{ margin-right: 0 }
+}
+.col-row {
+    padding: 0;
+    margin-bottom: 0;
+
+    .media-query(@media-lg; {
+        display: flex;
+    })
+}
+.col-row .col {
+    .media-query(@media-lg; {
+        flex: 1;
+        .col-margin();
+
+        &-2 {
+            flex: 2;
+            .col-margin();
+        }
+        &-3 {
+            flex: 3;
+            .col-margin();
+        }
+        &-4 {
+            flex: 4;
+            .col-margin();
+        }
+    });
+}
+
+
+
+
+/**
+ * Context
+ */
+
+.block(@color) {
+    background-color: lighten(@color, 50%);
+    color: @color;
+    border: 1px solid @color;
+}
+.bg {
+    &-default {
+        .block(@color-default);
+    }
+    &-info {
+        .block(@color-info);
+    }
+    &-warning {
+        .block(@color-warning);
+    }
+    &-danger {
+        .block(@color-danger);
+    }
+}
+.default { color: @color-default }
+.info { color: @color-info }
+.warning { color: @color-warning }
+.danger { color: @color-danger }
