@@ -37,7 +37,7 @@ input {
     margin: 0 0 @spacing-base 0;
 }
 @{block-elements} {
-    :last-child {
+    &:last-child {
         margin-bottom: 0;
     }
 }
@@ -119,8 +119,14 @@ a {
         }
     });
 }
-.col-row:last-child {
+
+.col-row {
     @{block-elements} {
+        &:last-child {
+            margin-bottom: @spacing-base;
+        }
+    }
+    &:last-child @{block-elements} {
         margin-bottom: 0;
     }
 }

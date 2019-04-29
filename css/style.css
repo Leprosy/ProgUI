@@ -237,11 +237,11 @@ footer {
   padding: 10px;
   margin: 0 0 10px 0;
 }
-div :last-child,
-article :last-child,
-section :last-child,
-header :last-child,
-footer :last-child {
+div:last-child,
+article:last-child,
+section:last-child,
+header:last-child,
+footer:last-child {
   margin-bottom: 0;
 }
 .debug {
@@ -357,11 +357,18 @@ a:hover {
     margin-right: 0;
   }
 }
+.col-row div:last-child,
+.col-row article:last-child,
+.col-row section:last-child,
+.col-row header:last-child,
+.col-row footer:last-child {
+  margin-bottom: 10px;
+}
 .col-row:last-child div,
-.col-row:last-child article,
-.col-row:last-child section,
-.col-row:last-child header,
-.col-row:last-child footer {
+.col-row article,
+.col-row section,
+.col-row header,
+.col-row footer {
   margin-bottom: 0;
 }
 /**
