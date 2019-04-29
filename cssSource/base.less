@@ -32,9 +32,14 @@ input {
         width: 70%;
     })
 }
-header,footer,nav,section,div {
+@{block-elements} {
     padding: @spacing-base;
     margin: 0 0 @spacing-base 0;
+}
+@{block-elements} {
+    :last-child {
+        margin-bottom: 0;
+    }
 }
 
 // Debug
@@ -114,7 +119,11 @@ a {
         }
     });
 }
-
+.col-row:last-child {
+    @{block-elements} {
+        margin-bottom: 0;
+    }
+}
 
 
 

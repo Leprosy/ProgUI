@@ -208,7 +208,7 @@ table {
 @color-base: #555555;
 @color-info: #45CBE3;
 @color-warning: #FFC145;
-@color-danger: #FF6542; 
+@color-danger: #FF6542;
 */
 body {
   font-family: Roboto, sans-serif;
@@ -229,13 +229,20 @@ input {
     width: 70%;
   }
 }
-header,
-footer,
-nav,
+div,
+article,
 section,
-div {
+header,
+footer {
   padding: 10px;
   margin: 0 0 10px 0;
+}
+div :last-child,
+article :last-child,
+section :last-child,
+header :last-child,
+footer :last-child {
+  margin-bottom: 0;
 }
 .debug {
   background-color: #cccccc;
@@ -349,6 +356,13 @@ a:hover {
   .col-row .col-4:last-child {
     margin-right: 0;
   }
+}
+.col-row:last-child div,
+.col-row:last-child article,
+.col-row:last-child section,
+.col-row:last-child header,
+.col-row:last-child footer {
+  margin-bottom: 0;
 }
 /**
  * Context
