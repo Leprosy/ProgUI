@@ -1,4 +1,4 @@
-/*
+/**
  * ProgUI - Base CSS
  */
 /* 
@@ -234,7 +234,8 @@ article,
 section,
 header,
 footer,
-pre {
+pre,
+form {
   padding: 10px;
   margin: 0 0 10px 0;
 }
@@ -243,7 +244,8 @@ article:last-child,
 section:last-child,
 header:last-child,
 footer:last-child,
-pre:last-child {
+pre:last-child,
+form:last-child {
   margin-bottom: 0;
 }
 .debug {
@@ -381,7 +383,8 @@ pre {
 .col-row section:last-child,
 .col-row header:last-child,
 .col-row footer:last-child,
-.col-row pre:last-child {
+.col-row pre:last-child,
+.col-row form:last-child {
   margin-bottom: 10px;
 }
 .col-row:last-child div,
@@ -389,7 +392,8 @@ pre {
 .col-row section,
 .col-row header,
 .col-row footer,
-.col-row pre {
+.col-row pre,
+.col-row form {
   margin-bottom: 0;
 }
 /**
@@ -426,4 +430,35 @@ pre {
 }
 .danger {
   color: #993333;
+}
+/**
+ * Forms
+ */
+form label,
+form input {
+  display: block;
+  width: 100%;
+}
+form input {
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #080808;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+form input:last-child {
+  margin-bottom: 0;
+}
+button {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #555555;
+  background-color: #d4d4d4;
+  box-shadow: 0 2px 2px #666;
+  transition: 0.2s;
+}
+button:hover {
+  box-shadow: none;
+  position: relative;
+  transform: translate(0, 2px);
 }

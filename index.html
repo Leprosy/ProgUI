@@ -15,11 +15,27 @@
                 <h3>A progressive User Interface</h3>
             </header>
 
-            <section class="bg-info">
+            <nav class="bg-warning" style="display: none">
+                <h2>My site</h2>
+                <ul>
+                    <li><a href="#">First Item</a></li>
+                    <li><a href="#">Second Item</a></li>
+                    <li><span class="info">Span item</span></li>
+                    <li>Item</li>
+                    <li>Another item</li>
+                    <li><a href="#">This is another</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Search here =></a></li>
+                    <li><input placeholder="Search..." /></li>
+                </ul>
+            </nav>
+
+            <section>
                 <h2>Basic content</h2>
                 <h3>An introduction to ProgUI elements...</h3>
-                <p>This is a paragraph of content. Simple enough. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no seaest Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua, ugo consetetur Lorem Ipsum.</p>
-                <p>This is another paragraph of content containing <strong>&lt;strong&gt;</strong> and <em>&lt;em&gt;</em> tags. More content follows Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no seaest Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua, ugo consetetur Lorem Ipsum.</p>
+                <p>This is a paragraph of content. Simple enough.</p>
+                <p>This is another paragraph of content containing <strong>strong text</strong> and <em>em text</em>. More content follows Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no seaest Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua, ugo consetetur Lorem Ipsum.</p>
                 <p>You can use the <code>&lt;code&gt;</code> to display content like this: <code>http://www.google.com/</code></p>
                 <p>Also, using the <code>&lt;pre&gt;</code> tag you can display blocks of code:</p>
                 <pre>
@@ -31,10 +47,14 @@ w = whois.whois(data)
 print w
                 </pre>
                 <p>You can use the <code>.bg-</code> classes to have contextual backgrounds</p>
+                <div class="bg-default">This is using <code>.bg-default</code> class.</div>
+                <div class="bg-info">This is using <code>.bg-info</code> class.</div>
+                <div class="bg-warning">This is using <code>.bg-warning</code> class.</div>
+                <div class="bg-danger">This is using <code>.bg-danger</code> class.</div>
             </section>
 
             <section class="bg-warning">
-                <h2>More content here</h2>
+                <h2>More context background content here</h2>
                 <section class="bg-info">
                     <h3>Title</h3>
                     <p>Nested contextual containers can be implemented.</p>
@@ -95,21 +115,24 @@ print w
                 </div>
             </div>
 
-            <nav class="bg-warning">
-                <h2>My site</h2>
-                <ul>
-                    <li><a href="#">First Item</a></li>
-                    <li><a href="#">Second Item</a></li>
-                    <li><span class="info">Span item</span></li>
-                    <li>Item</li>
-                    <li>Another item</li>
-                    <li><a href="#">This is another</a></li>
-                </ul>
-                <ul>
-                    <li><a href="#">Search here =></a></li>
-                    <li><input placeholder="Search..." /></li>
-                </ul>
-            </nav>
+            <section>
+                <h2>Forms</h2>
+                <h3>Syiling the way to enter data</h3>
+                <form class="bg-info">
+                    <p>Enter your info</p>
+
+                    <label>First Name</label>
+                    <input type="text" />
+
+                    <label>Last Name</label>
+                    <input type="text" />
+
+                    <label>Email</label>
+                    <input type="text" />
+
+                    <button>Accept</button>
+                </form>
+            </section>
         </div>
     </body>
 </html>
