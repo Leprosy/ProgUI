@@ -1,6 +1,6 @@
 /**
  * ProgUI Tabs component JS
- * 
+ *
  * @TODO: more than one tab element in the plugin
  */
 (function($) {
@@ -12,11 +12,10 @@
             activeTab: 0
         };
 
-        var options = $.extend(defaults, options);
+        options = $.extend(defaults, options);
 
         this.each(function(index, elem) {
-
-            $(this).find('div').hide()
+            $(this).find('div').hide();
             $($(this).find('div')[options.activeTab]).show();
             $(this).find('li').click(function(a,b){
                 $(this).parent().find("li").removeClass("active");

@@ -313,6 +313,8 @@ code {
   font-family: "Roboto Mono", mono;
   color: #555555;
   background-color: #d4d4d4;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 pre {
   font-family: "Roboto Mono", mono;
@@ -461,4 +463,37 @@ button:hover {
   box-shadow: none;
   position: relative;
   transform: translate(0, 2px);
+}
+/**
+ * Tabs
+ */
+.tabs {
+  margin: 0;
+  padding: 0;
+}
+.tabs ul {
+  list-style: none;
+}
+.tabs ul li {
+  cursor: pointer;
+  border: 1px solid #555555;
+  border-bottom: none;
+  float: left;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+.tabs ul li.active {
+  background-color: #a2a2a2;
+}
+.tabs div {
+  clear: both;
+}
+.tabs div:last-child,
+.tabs article:last-child,
+.tabs section:last-child,
+.tabs header:last-child,
+.tabs footer:last-child,
+.tabs pre:last-child,
+.tabs form:last-child {
+  margin-bottom: 10px;
 }

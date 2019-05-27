@@ -221,3 +221,39 @@ button {
         transform: translate(0, 2px);
     }
 }
+
+
+/**
+ * Tabs
+ */
+ .tabs {
+     margin: 0;
+     padding: 0;
+
+     ul {
+         list-style: none;
+
+         li {
+             cursor: pointer;
+             border: 1px solid @color-default;
+             border-bottom: none;
+             float: left;
+             padding: @spacing-base @spacing-base * 2;
+             margin-right: @spacing-base;
+
+             &.active {
+                 background-color: lighten(@color-default, 30%);
+             }
+         }
+     }
+
+     div {
+         .clearfix;
+     }
+
+     @{block-elements} {
+         &:last-child {
+             margin-bottom: @spacing-base;
+         }
+     }
+ }
