@@ -257,3 +257,53 @@ button {
          }
      }
  }
+
+
+/**
+ * ProgTable
+ */
+    .prog-table .asc:after{content: " ↑"}
+    .prog-table .desc:after{content: " ↓"}
+
+    .prog-table a {
+        cursor: pointer;
+    }
+    .prog-table div {
+        margin: 0;
+        padding: 0;
+    }
+    .prog-table .body, .prog-table .footer, .prog-table .header{
+        display: table;
+        width: 100%;
+        /*margin-bottom: 0;*/
+    }
+
+    .prog-table .header {
+        font-weight: bold;
+        background-color: #ccc;
+    }
+    .prog-table .header span {
+        cursor: pointer;
+    }
+
+    .prog-table .wrap {
+         margin: unset;
+         padding: unset;
+         overflow: auto;
+    }
+    .prog-table .row {
+        display: table-row;
+    }
+    .prog-table .row > span {
+        padding: 4px;
+        width: 120px;
+        border-bottom: 1px solid #000;
+        text-align: center;
+        display: table-cell;
+    }
+    .prog-table .row .highlight {
+        display: inline;
+        padding: 0;
+        background-color: #ff0;
+        font-weight: bold
+    }

@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="css/style.css">
         <script src="js/jquery.js"></script>
         <script src="js/tabs.js"></script>
+        <script src="js/table.js"></script>
         <title>ProgUI demo</title>
         <style></style>
     </head>
@@ -160,6 +161,26 @@ print w
             </section>
 
             <section>
+                <h1>Tables example</h1>
+                <table id="table1">
+                    <tr>
+                        <th>Col 1</th>
+                        <th>Col 2</th>
+                        <th>Col 3</th>
+                        <th>Col 4</th>
+                        <th>Col 5</th>
+                        <th>Col 6</th>
+                        <th>Col 7</th>
+                        <th>Col 8</th>
+                    </tr>
+                </table>
+
+                <button class="bg-info" onclick="buildTable(50)">Generate 50 rows</button>
+                <button class="bg-warning" onclick="buildTable(500)">Generate 500 rows</button>
+                <button class="bg-danger" onclick="buildTable(5000)">Generate 5000 rows</button>
+            </section>
+
+            <section>
                 <h2>Forms</h2>
                 <h3>Syiling the way to enter data</h3>
                 <form class="bg-info">
@@ -181,6 +202,67 @@ print w
         <script>
         // Init tabs
         $('.tabs').ProgTabs({activeTab: 1})
+
+        // Tables
+        function buildTable(n) {
+            for (var i = 0; i < n; ++i) {
+                var vals = [];
+
+                for (var j = 0; j < 8; ++j) {
+                    if (j % 2 == 0) {
+                        vals.push(randomStr(10));
+                    } else {
+                        vals.push(Math.random() * 100);
+                    }
+                }
+
+                $("#table1").append("<tr><td>" + vals.join("</td><td>") + "</td></tr>");
+            }
+
+            $("#table1").ProgTable({
+                layout: {
+                    //height: 400
+                },
+                pagination: {
+                    size: 12
+                },
+                colTemplate: {
+                    "Col 1": function(row, content) {
+                        return row + ") = " + content;
+                    },
+                    "Col 2": function(row, content) {
+                        if (content > 50) {
+                            return '<span class="warning">' + content + "</span>";
+                        } else {
+                            return content;
+                        }
+                    },
+                    "Col 4": function(row, content) {
+                        if (row % 2 == 0) {
+                            return "<strong>" + content + "</strong>";
+                        } else {
+                            return content;
+                        }
+                    }
+                },
+                onSearch: function(query, info) {
+                    /* $.ProgAlert.closeAll(function() {
+                        $.ProgAlert.show({title: "Table Event", content: "search for:" + query});
+                    }) */
+                    console.log("search", query, info)
+                },
+                onSort: function(val, order, info) {
+                    /*$.ProgAlert.closeAll(function() {
+                        $.ProgAlert.show({title: "Table Event", content: "sorting:" + val + "," + order});
+                    })*/
+                    console.log("sort", val, order, info)
+                }
+            });
+        }
+
+        function randomStr(chars) {
+            return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, chars);
+        }
         </script>
     </body>
 </html>

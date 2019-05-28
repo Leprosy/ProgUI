@@ -1,6 +1,6 @@
 /**
  * ProgUI Table component JS
- * 
+ *
  * @TODO:
  *  - Remove col_id from cols data structure.
  *  - Update only the table body on the render method.
@@ -9,7 +9,8 @@
 (function($) {
     /**
      *  Default sorting algorithm, a simple quickSort, User can plug in a custom
-     *  sort function if desired. */
+     *  sort function if desired.
+     */
     function isNumber(a) {
         return parseFloat(a) == parseFloat(a);
     }
@@ -70,7 +71,7 @@
     function loading(tableID) {
         var table = $("#" + tableID + " div.body");
         table.css("opacity", "0.5");
-        console.log("Loading")
+        console.log("Loading");
     }
 
     /**
@@ -86,15 +87,15 @@
         // Base elements for the table
         var toolHtml = '<div class="tools"><input type="text" placeholder="Enter search text..." class="search" />';
         if (_info.pagination.size > 0) {
-            toolHtml += '<a href="#" class="prev">&lt;-Prev</a> | Page ' + (_info.pagination.page + 1) +
-                        ' of ' + _info.pagination.totalPages + ' | <a href="#" class="next">Next-></a>';
+            toolHtml += '<a class="prev">&lt;-Prev</a> | Page ' + (_info.pagination.page + 1) +
+                        ' of ' + _info.pagination.totalPages + ' | <a class="next">Next-></a>';
         }
         toolHtml += '</div>';
 
         var tools = $(toolHtml);
         var header = $('<div class="header"></div>');
         var headerRow = $('<div class="row"></div>');
-        var container = $('<div class="container"></div>');
+        var container = $('<div class="wrap"></div>');
         var body = $('<div class="body"></div>');
         var footer = $('<div class="footer"></div>');
 
@@ -109,7 +110,7 @@
                 render(tableID);
                 console.log("ProgTable: Search callback.", _info.search.query, table);
                 _info.onSearch(_info.search.query, _info);
-            }, 1)
+            }, 1);
         }).val(_info.search.query);
 
         // Previous page
@@ -126,7 +127,7 @@
                 render(tableID);
                 console.log("ProgTable: Page callback.", _info.pagination.page, table);
                 // TODO: Implement this
-            }, 1)
+            }, 1);
         });
 
         // Next page
@@ -143,7 +144,7 @@
                 render(tableID);
                 console.log("ProgTable: Page callback.", _info.pagination.page, table);
                 // TODO: Implement this
-            }, 1)
+            }, 1);
         });
 
         // Build columns
@@ -179,7 +180,7 @@
                     sort(tableID);
                     console.log("ProgTable: Sort callback.", _info.sort.col, _info.sort.order, _info);
                     _info.onSort(_info.sort.col, _info.sort.order, _info);
-                }, 1)
+                }, 1);
             });
 
             headerRow.append(column);
@@ -256,8 +257,8 @@
             dict.search = { query: "", function: null };
             dict.pagination = { page: 0, size: 0 };
             dict.sort = { col: "_index", order: "asc", function: null };
-            dict.onSearch = function(query, table) {}
-            dict.onSort = function(col, order, table) {}
+            dict.onSearch = function(query, table) {};
+            dict.onSort = function(col, order, table) {};
             $.extend(true, dict, options);
 
             // Build columns & data structures
