@@ -162,18 +162,7 @@ print w
 
             <section>
                 <h1>Tables example</h1>
-                <table id="table1">
-                    <tr>
-                        <th>Col 1</th>
-                        <th>Col 2</th>
-                        <th>Col 3</th>
-                        <th>Col 4</th>
-                        <th>Col 5</th>
-                        <th>Col 6</th>
-                        <th>Col 7</th>
-                        <th>Col 8</th>
-                    </tr>
-                </table>
+                <table id="table1"></table>
 
                 <button class="bg-info" onclick="buildTable(50)">Generate 50 rows</button>
                 <button class="bg-warning" onclick="buildTable(500)">Generate 500 rows</button>
@@ -205,6 +194,8 @@ print w
 
         // Tables
         function buildTable(n) {
+            $("#table1").replaceWith('<table id="table1"><tr><th>Col 1</th><th>Col 2</th><th>Col 3</th><th>Col 4</th><th>Col 5</th><th>Col 6</th><th>Col 7</th><th>Col 8</th></tr></table>');
+
             for (var i = 0; i < n; ++i) {
                 var vals = [];
 
@@ -221,7 +212,7 @@ print w
 
             $("#table1").ProgTable({
                 layout: {
-                    //height: 400
+                    height: 500
                 },
                 pagination: {
                     size: 12

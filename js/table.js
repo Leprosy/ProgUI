@@ -101,7 +101,7 @@
 
         // Setup tools
         // Search
-        tools.find("input").on("change", function(ev) {
+        tools.find("input").on("keyup", function(ev) {
             console.log("ProgTable: Searching data.", this.value, table);
             loading(tableID);
             _info.search.query = this.value;
@@ -110,6 +110,7 @@
                 render(tableID);
                 console.log("ProgTable: Search callback.", _info.search.query, table);
                 _info.onSearch(_info.search.query, _info);
+                table.find("input").focus();
             }, 1);
         }).val(_info.search.query);
 
